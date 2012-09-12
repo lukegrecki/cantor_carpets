@@ -14,4 +14,7 @@ class FractalTest < Test::Unit::TestCase
 
   def test_create_bits
   end
+
+  def test_calculate_bits
+  end
 end
