@@ -1,3 +1,4 @@
+require 'matrix'
 
 class Fractal
   attr_accessor :seed, :depth
@@ -12,7 +13,8 @@ class Fractal
   end
 
   def create_bits
-    @bits = nil
+    @bits = Matrix.zero(@seed.row_size    * @depth,
+                        @seed.column_size * @depth)
     
   end
 
