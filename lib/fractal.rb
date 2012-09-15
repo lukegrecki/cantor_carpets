@@ -9,26 +9,37 @@ class Fractal
   end
 
   def new_bit_array
-    col   = Array.new(@seed.size    ** @depth, 0)
+    col   = Array.new(@seed.size ** @depth, 0)
     bit_array = Array.new(@seed[0].size ** @depth, col)
   end
 
   def calculate_bits(bit_array)
-    if bit_array.size == @seed.size && bit_array[0].size == @seed[0].size
+    seed_row_size = @seed.size
+    seed_col_size = @seed[0].size
+    row_size = bit_array.size
+    col_size = bit_array[0].size
+
+    if row_size == seed_row_size && col_size == seed_col_size
       return @seed
     end
 
-    # submatrices = Matrix.empty(@seed.row_size, @seed.column_size)
-    # row_chunk = matrix.row_size / @seed.row_size
-    # col_chunk = matrix.column_size / @seed.column_size
+    row_chunk = row_size / seed_row_size
+    col_chunk = col_size / seed_col_size
 
-    # submatrices.each_with_index do |e, row, col|
-    #   if @seed[row, col] == 1
-    #     submatrix = matrix.minor(row_chunk * row, row_chunk,
-    #                              col_chunk * col, col_chunk)
-    #     calculate_bits(submatrix)
-    #   end
-    # end
+    @seed.each_with_index do |x, xi|
+      x.each_with_index do |y, yi|
+        if y == 1
+          rows = bit_array[(row_chunk * xi)...(row_chunk * (xi + 1))]
+          subarray = rows.map {|row| row[(col_chunk * yi)...(col_chunk * (yi + 1))]}
+          new_subarray = calculate_bits(subarray)
+
+          new_subarray.each do |row|
+            bit_array
+          end
+
+        end
+      end
+    end
   end
 
   def create_image

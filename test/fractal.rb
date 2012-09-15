@@ -1,6 +1,5 @@
 require_relative '../lib/fractal'
 require 'test/unit'
-require 'matrix'
 
 class FractalTest < Test::Unit::TestCase
   def setup
@@ -20,6 +19,6 @@ class FractalTest < Test::Unit::TestCase
   end
 
   def test_bits
-    # assert_equal(@fractal.bits, 
+    # assert_equal([0], @fractal.bits)
   end
 end

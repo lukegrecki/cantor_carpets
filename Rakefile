@@ -7,7 +7,12 @@ namespace :test do
     t.verbose = false
   end
 
-  task :all => [:fractal]
+  Rake::TestTask.new(:array2d) do |t|
+    t.test_files = FileList['test/array2d.rb']
+    t.verbose = false
+  end
+
+  task :all => [:fractal, :array2d]
 end
 
 desc 'Run all tests'
