@@ -1,6 +1,4 @@
 class Array2D
-  include Enumerable
-
   attr_accessor :state
 
   def initialize(rows, columns, value=nil)
@@ -13,6 +11,14 @@ class Array2D
         yield e
       end
     end
+  end
+
+  def each_with_index(&block)
+    @state.each_with_index do |row, row_index|
+      row.each_with_index do |e, column_index|
+        yield e, [row_index, column_index]
+      end
+    end   
   end
 
   def to_s

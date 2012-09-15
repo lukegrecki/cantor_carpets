@@ -52,6 +52,6 @@ class Array2DTest < Test::Unit::TestCase
 
   def test_each
     array2d = Array2D.new(3, 5, 0)
-    array2d.each {|elt| assert_equal(0, elt)}
+    array2d.each {|e| assert_equal(0, e)}
   end
 end
