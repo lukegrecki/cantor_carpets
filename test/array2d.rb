@@ -27,4 +27,23 @@ class Array2DTest < Test::Unit::TestCase
     @array2d[0, 0..1] = [2, 3]  
     assert_equal [2, 3], @array2d[0, 0..1]
   end
+
+  def test_size
+    assert_equal [3, 5], @array2d.size
+  end
+
+  def test_row_size
+    assert_equal 3, @array2d.row_size
+  end
+
+  def test_column_size
+    assert_equal 5, @array2d.column_size
+  end
+
+  def test_equality
+    @array2d[0..1, 0..1] = [[0, 1], [2, 3]]
+    new_array2d = Array2D.new(3, 5)
+    new_array2d[0..1, 0..1] = [[0, 1], [2, 3]]
+    assert @array2d == new_array2d
+  end
 end
