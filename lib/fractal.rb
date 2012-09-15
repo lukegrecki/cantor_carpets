@@ -1,4 +1,4 @@
-relative_require 'array2d'
+require_relative 'array2d'
 
 class Fractal
   attr_reader :seed, :depth, :bits, :image
@@ -11,37 +11,43 @@ class Fractal
   end
 
   def new_bit_array
-    col   = Array.new(@seed.size ** @depth, 0)
-    bit_array = Array.new(@seed[0].size ** @depth, col)
+    Array2D.new(@seed.row_size ** @depth, 
+                @seed.column_size ** @depth, 0)
   end
 
   def calculate_bits(bit_array)
-    seed_row_size = @seed.size
-    seed_col_size = @seed[0].size
-    row_size = bit_array.size
-    col_size = bit_array[0].size
-
-    if row_size == seed_row_size && col_size == seed_col_size
+    puts "seed size is #{@seed.size}"
+    puts "bit_array size is #{bit_array.size}" 
+    if bit_array.size == @seed.size
+      puts "bit_array is same size"
+      puts "RETURNED"
       return @seed
     end
 
-    row_chunk = row_size / seed_row_size
-    col_chunk = col_size / seed_col_size
+    row_chunk = bit_array.row_size / @seed.row_size
+    col_chunk = bit_array.column_size / @seed.column_size
 
-    @seed.each_with_index do |x, xi|
-      x.each_with_index do |y, yi|
-        if y == 1
-          rows = bit_array[(row_chunk * xi)...(row_chunk * (xi + 1))]
-          subarray = rows.map {|row| row[(col_chunk * yi)...(col_chunk * (yi + 1))]}
-          new_subarray = calculate_bits(subarray)
+    puts "row_chunk is #{row_chunk}"
+    puts "col_chunk is #{col_chunk}"
 
-          new_subarray.each do |row|
-            bit_array
-          end
-
-        end
+    @seed.each_with_index do |e, index|
+      xi = index[0]
+      yi = index[1]
+      row_range = (row_chunk * xi)...(row_chunk * (xi + 1))
+      column_range = (col_chunk * yi)...(col_chunk * (yi + 1))
+      puts "bit_array size is #{bit_array.size}"  
+      puts "seed_row is #{xi}"
+      puts "seed_column is #{yi}"
+      puts "row_range is #{row_range}"
+      puts "column_range is #{column_range}"
+      puts "bit_array is #{bit_array}"
+      puts "element is #{e}"
+      puts
+      if e == 1
+        puts "subarray is #{bit_array[row_range, column_range]}"
+        bit_array[row_range, column_range] = calculate_bits(bit_array[row_range, column_range])
       end
-    end
+    end 
   end
 
   def create_image
