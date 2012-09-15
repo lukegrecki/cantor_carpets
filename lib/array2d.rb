@@ -13,9 +13,13 @@ class Array2D
       case y
       when Integer
         @data[x][y] = value
+      when Range
+        y.each {|yi| @data[x][yi] = value[yi - y.first]}    
       end
     when Range
       case y
+      when Integer
+        x.each {|xi| @data[xi][y] = value[xi - x.first]}
       when Range
         x.each do |xi|
           y.each do |yi|
@@ -32,9 +36,17 @@ class Array2D
       case y
       when Integer
         @data[x][y]
+      when Range
+        subarray = Array.new(y.to_a.size)
+        y.each {|yi| subarray[yi - y.first] = @data[x][yi]}
+        subarray
       end
     when Range
       case y
+      when Integer
+        subarray = Array.new(x.to_a.size)
+        x.each {|xi| subarray[xi - x.first] = @data[xi][y]}
+        subarray
       when Range
         subarray = Array.new(x.to_a.size) { Array.new(y.to_a.size) }
         x.each do |xi|
@@ -46,6 +58,4 @@ class Array2D
       end
     end
   end
-
-
 end

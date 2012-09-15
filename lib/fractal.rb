@@ -1,3 +1,5 @@
+relative_require 'array2d'
+
 class Fractal
   attr_reader :seed, :depth, :bits, :image
 

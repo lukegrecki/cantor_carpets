@@ -17,7 +17,14 @@ class Array2DTest < Test::Unit::TestCase
 
   def test_bracket_with_ranges
     @array2d[0..1, 0..1] = [[0, 1], [2, 3]]
-    puts @array2d
     assert_equal [[0, 1], [2, 3]], @array2d[0..1, 0..1]
+  end
+
+  def test_bracket_with_integers_and_ranges
+    @array2d[0..1, 0] = [0, 1]
+    assert_equal [0, 1], @array2d[0..1, 0]
+
+    @array2d[0, 0..1] = [2, 3]  
+    assert_equal [2, 3], @array2d[0, 0..1]
   end
 end
