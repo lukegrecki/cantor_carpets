@@ -8,6 +8,7 @@ class Array2DTest < Test::Unit::TestCase
 
   def test_initialize
     assert_instance_of Array2D, Array2D.new(3, 5)
+    assert_instance_of Array2D, Array2D.new(3, 5, 0)
   end
 
   def test_bracket_with_integers
@@ -16,8 +17,10 @@ class Array2DTest < Test::Unit::TestCase
   end
 
   def test_bracket_with_ranges
-    @array2d[0..1, 0..1] = [[0, 1], [2, 3]]
-    assert_equal [[0, 1], [2, 3]], @array2d[0..1, 0..1]
+    subarray = Array2D.new(2, 2)
+    subarray.state = [[0, 1], [2, 3]]
+    @array2d[0..1, 0..1] = subarray
+    assert_equal subarray, @array2d[0..1, 0..1]
   end
 
   def test_bracket_with_integers_and_ranges
@@ -45,5 +48,10 @@ class Array2DTest < Test::Unit::TestCase
     new_array2d = Array2D.new(3, 5)
     new_array2d[0..1, 0..1] = [[0, 1], [2, 3]]
     assert @array2d == new_array2d
+  end
+
+  def test_each
+    array2d = Array2D.new(3, 5, 0)
+    array2d.each {|elt| assert_equal(0, elt)}
   end
 end

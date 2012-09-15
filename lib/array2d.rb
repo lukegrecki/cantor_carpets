@@ -1,8 +1,18 @@
 class Array2D
-  attr_reader :state
+  include Enumerable
 
-  def initialize(rows, columns)
-    @state = Array.new(rows) { Array.new(columns) }
+  attr_accessor :state
+
+  def initialize(rows, columns, value=nil)
+    @state = Array.new(rows) { Array.new(columns) { value } }
+  end
+
+  def each(&block)
+    @state.each do |row|
+      row.each do |e|
+        yield e
+      end
+    end
   end
 
   def to_s
@@ -41,7 +51,7 @@ class Array2D
       when Range
         x.each do |xi|
           y.each do |yi|
-            @state[xi][yi] = value[xi - x.first][yi - y.first]
+            @state[xi][yi] = value[xi - x.first, yi - y.first]
           end
         end
       end
@@ -66,10 +76,10 @@ class Array2D
         x.each {|xi| subarray[xi - x.first] = @state[xi][y]}
         subarray
       when Range
-        subarray = Array.new(x.to_a.size) { Array.new(y.to_a.size) }
+        subarray = Array2D.new(x.to_a.size, y.to_a.size)
         x.each do |xi|
           y.each do |yi|
-            subarray[xi][yi] = @state[xi][yi]
+            subarray.state[xi][yi] = @state[xi][yi]
           end
         end
         subarray
