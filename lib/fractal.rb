@@ -7,8 +7,17 @@ class Fractal
   def initialize(seed, depth)
     @seed = seed
     @depth = depth
+    compute_fractal
+  end
+
+  def seed=(new_seed)
+    @seed = new_seed
+    compute_fractal
+  end
+
+  def compute_fractal
     @bits = calculate_bits(new_bit_array)
-    create_image
+    @image = create_image
   end
 
   def new_bit_array
@@ -41,9 +50,9 @@ class Fractal
                              @seed.row_size ** @depth,
                              PNG::Color::White)
     canvas.each do |x, y, color|
-      canvas[x, y] = PNG::Color::Black if @bits[y, x] == 1
+      canvas[x, y] = PNG::Color::Black if @bits[-y, x] == 1
     end
-    @image = PNG.new(canvas)
+    PNG.new(canvas)
   end
 
   def write_image(name='fractal.png')

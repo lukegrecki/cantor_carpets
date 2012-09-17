@@ -1,1 +1,1 @@
-relative_require 'lib/fractal'
+require_relative 'lib/fractal'
