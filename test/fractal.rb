@@ -21,4 +21,11 @@ class FractalTest < Test::Unit::TestCase
     desired_array[3, 0...9] = [0, 0, 0, 0, 1, 0, 0, 0, 0]
     assert_equal(desired_array, @fractal.bits)
   end
+
+  def test_write_image
+    seed = Array2D.new(2, 3)
+    seed.state = [[1, 0, 1], [0, 1, 0]]
+    fractal = Fractal.new(seed, 6)
+    fractal.write_image
+  end
 end

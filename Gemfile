@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rmagick'
 gem 'rake'
+gem 'png'
+gem 'hoe'
+gem 'RubyInline'
