@@ -46,7 +46,7 @@ class Fractal
     @image = PNG.new(canvas)
   end
 
-  def write_image
-    @image.save('fractal.png')
+  def write_image(name='fractal.png')
+    @image.save(name)
   end
 end

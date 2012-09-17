@@ -26,6 +26,6 @@ class FractalTest < Test::Unit::TestCase
     seed = Array2D.new(2, 3)
     seed.state = [[1, 0, 1], [0, 1, 0]]
     fractal = Fractal.new(seed, 6)
-    fractal.write_image
+    fractal.write_image("test/test_fractal.png")
   end
 end
