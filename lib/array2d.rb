@@ -85,7 +85,7 @@ class Array2D
         subarray = Array2D.new(x.to_a.size, y.to_a.size)
         x.each do |xi|
           y.each do |yi|
-            subarray.state[xi][yi] = @state[xi][yi]
+            subarray.state[xi - x.first][yi - y.first] = @state[xi][yi]
           end
         end
         subarray
