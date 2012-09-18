@@ -1,16 +1,16 @@
-require_relative '../lib/fractal'
+require_relative '../lib/cantor_carpet'
 require 'test/unit'
 
-class FractalTest < Test::Unit::TestCase
+class CarpetTest < Test::Unit::TestCase
   def setup
     @seed = Array2D.new(2, 3)
     @seed.state = [[1, 0, 1], [0, 1, 0]]
     @depth = 2
-    @fractal = Fractal.new(@seed, @depth)
+    @carpet = Carpet.new(@seed, @depth)
   end
 
   def test_initialize
-    assert_instance_of(Fractal, Fractal.new(@seed, @depth))
+    assert_instance_of(Carpet, Carpet.new(@seed, @depth))
   end
 
   def test_bits
@@ -19,13 +19,13 @@ class FractalTest < Test::Unit::TestCase
     desired_array[1, 0...9] = [0, 1, 0, 0, 0, 0, 0, 1, 0]
     desired_array[2, 0...9] = [0, 0, 0, 1, 0, 1, 0, 0, 0]
     desired_array[3, 0...9] = [0, 0, 0, 0, 1, 0, 0, 0, 0]
-    assert_equal(desired_array, @fractal.bits)
+    assert_equal(desired_array, @carpet.bits)
   end
 
   def test_write_image
     seed = Array2D.new(3, 3)
     seed.state = [[1, 0, 1], [0, 0, 0],[1, 0, 1]]
-    fractal = Fractal.new(seed, 6)
-    fractal.write_image("test/test_fractal.png")
+    carpet = Carpet.new(seed, 6)
+    carpet.write_image('test/carpet.png')
   end
 end

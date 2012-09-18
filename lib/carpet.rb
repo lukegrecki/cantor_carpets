@@ -1,21 +1,16 @@
 require 'png'
 require_relative 'array2d'
 
-class Fractal
+class Carpet
   attr_reader :seed, :depth, :bits, :image
 
   def initialize(seed, depth)
     @seed = seed
     @depth = depth
-    compute_fractal
+    compute_carpet
   end
 
-  def seed=(new_seed)
-    @seed = new_seed
-    compute_fractal
-  end
-
-  def compute_fractal
+  def compute_carpet
     @bits = calculate_bits(new_bit_array)
     @image = create_image
   end
@@ -55,7 +50,7 @@ class Fractal
     PNG.new(canvas)
   end
 
-  def write_image(name='fractal.png')
+  def write_image(name='carpet.png')
     @image.save(name)
   end
 end

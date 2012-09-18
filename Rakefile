@@ -2,8 +2,8 @@ require 'rake'
 require 'rake/testtask'
 
 namespace :test do
-  Rake::TestTask.new(:fractal) do |t|
-    t.test_files = FileList['test/fractal.rb']
+  Rake::TestTask.new(:carpet) do |t|
+    t.test_files = FileList['test/carpet.rb']
     t.verbose = false
   end
 
@@ -12,7 +12,7 @@ namespace :test do
     t.verbose = false
   end
 
-  task :all => [:fractal, :array2d]
+  task :all => [:carpet, :array2d]
 end
 
 desc 'Run all tests'
