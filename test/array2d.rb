@@ -54,7 +54,5 @@ class Array2DTest < Test::Unit::TestCase
   def test_each
     array2d = Array2D.new(3, 5, 0)
     array2d.each {|e| assert_equal(0, e)}
-
-    # array2d.each_with_index {|e, index| puts "element is #{e} and index is #{index}"}
   end
 end

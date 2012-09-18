@@ -1,4 +1,4 @@
-require_relative '../lib/cantor_carpet'
+require_relative '../lib/carpet'
 require 'test/unit'
 
 class CarpetTest < Test::Unit::TestCase
