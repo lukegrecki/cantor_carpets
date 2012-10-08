@@ -29,3 +29,4 @@ DEPENDENCIES
   hoe
   jeweler
   png
+  rdoc
