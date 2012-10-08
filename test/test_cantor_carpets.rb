@@ -1,7 +1,6 @@
-require_relative '../lib/carpet'
-require 'test/unit'
+require 'helper'
 
-class CarpetTest < Test::Unit::TestCase
+class CantorCarpetsTest < Test::Unit::TestCase
   def setup
     @seed = Array2D.new(2, 3)
     @seed.state = [[1, 0, 1], [0, 1, 0]]

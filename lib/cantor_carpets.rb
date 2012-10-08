@@ -1,5 +1,5 @@
 require 'png'
-require_relative 'array2d'
+require 'array_2d'
 
 class Carpet
   attr_reader :seed, :depth, :bits, :image
