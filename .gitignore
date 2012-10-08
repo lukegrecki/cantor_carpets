@@ -1,1 +1,7 @@
 *.png
+
+# bundler
+.bundle
+
+# jeweler generated
+pkg

@@ -1,12 +1,17 @@
-A ruby library for creating 2D cantor sets.
---------------------------------------------------------
+cantor_carpets
+==============
 
+Install
+-------
+
+    gem install cantor_carpets
+
+Usage
+-----
 
 Each fractal (called a Carpet) is determined by a seed and a depth. The seed is a 
 2D array that determines which squares are removed, and the depth determines the 
 resolution of the image. The resulting image is a PNG.
-
-    require './cantor_carpets'
 
     seed = Array2D.new(3, 3)
 
